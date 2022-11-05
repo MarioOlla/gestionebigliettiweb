@@ -20,7 +20,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 	public Biglietto findOne(Long id) throws Exception {
 		if (id == null || id < 1)
 			throw new Exception("Id in input nullo invalido");
-		return entityManager.createQuery("from biglietto", Biglietto.class).getResultStream().findFirst().orElse(null);
+		return (Biglietto) entityManager.createNativeQuery("select * from biglietto where id=?", Biglietto.class).setParameter(1, id).getResultStream().findFirst().orElse(null);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class BigliettoDAOImpl implements BigliettoDAO {
 	public void delete(Biglietto input) throws Exception {
 		if (input == null || input.getId() == null || input.getId() < 1)
 			throw new Exception("Errore durante la rimozione, input non valido");
-		input = entityManager.merge(input);
+		entityManager.remove(input);
 	}
 
 	@Override

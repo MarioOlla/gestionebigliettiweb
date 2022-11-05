@@ -19,13 +19,13 @@ public class ListBigliettiServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		List<Biglietto> result = new ArrayList<>();
-		
+
 		try {
-			
-			result = MyServiceFactory.getArticoloServiceInstance().listAll();
-			
+
+			result = MyServiceFactory.getBigliettoServiceInstance().listAll();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage",

@@ -56,7 +56,7 @@ public class BigliettoServiceImpl implements BigliettoService {
 		try {
 			entityManager.getTransaction().begin();
 			bigliettoDAOInstance.setEntityManager(entityManager);
-			
+
 			bigliettoDAOInstance.update(input);
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -76,7 +76,7 @@ public class BigliettoServiceImpl implements BigliettoService {
 		try {
 			entityManager.getTransaction().begin();
 			bigliettoDAOInstance.setEntityManager(entityManager);
-			
+
 			bigliettoDAOInstance.insert(input);
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
@@ -96,7 +96,7 @@ public class BigliettoServiceImpl implements BigliettoService {
 		try {
 			entityManager.getTransaction().begin();
 			bigliettoDAOInstance.setEntityManager(entityManager);
-			
+
 			bigliettoDAOInstance.delete(bigliettoDAOInstance.findOne(id));
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {

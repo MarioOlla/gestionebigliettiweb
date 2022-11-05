@@ -7,35 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class PrepareDeleteBigliettoServlet
- */
+import org.apache.commons.lang3.math.NumberUtils;
+
+import it.prova.gestionebigliettiweb.service.MyServiceFactory;
+
 @WebServlet("/PrepareDeleteBigliettoServlet")
 public class PrepareDeleteBigliettoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PrepareDeleteBigliettoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String idBigliettoParam = request.getParameter("idBiglietto");
+		
+		if (!NumberUtils.isParsable(idBigliettoParam)) {
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto,id non valido.");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			return;
+		}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			request.setAttribute("bigliettoDaVisualizzare_attr",
+					MyServiceFactory.getBigliettoServiceInstance().findById(Long.parseLong(idBigliettoParam)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato, non sono riuscito a caricare il biglietto.");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			return;
+		}
+		
+		request.getRequestDispatcher("/biglietto/delete.jsp").forward(request, response);
 	}
 
 }

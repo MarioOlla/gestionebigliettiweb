@@ -7,35 +7,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ExecuteShowBigliettoServlet
- */
+import org.apache.commons.lang3.math.NumberUtils;
+
+import it.prova.gestionebigliettiweb.service.MyServiceFactory;
+
 @WebServlet("/ExecuteShowBigliettoServlet")
 public class ExecuteShowBigliettoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ExecuteShowBigliettoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String idBigliettoParam = request.getParameter("idBiglietto");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		if (!NumberUtils.isParsable(idBigliettoParam)) {
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto durante la richiesta.");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			return;
+		}
+
+		try {
+			request.setAttribute("bigliettoDaVisualizzare_attr",
+					MyServiceFactory.getBigliettoServiceInstance().findById(Long.parseLong(idBigliettoParam)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto durante la richiesta.");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			return;
+		}
+		
+		request.getRequestDispatcher("/biglietto/show.jsp").forward(request, response);
 	}
 
 }
