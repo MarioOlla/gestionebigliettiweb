@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <header>
   <!-- Fixed navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Eighth navbar example">
@@ -27,8 +28,9 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-3 text-end">
-        <a  class="btn btn-primary" href="login.jsp">Login</a>
+      <div class="col-md-3 text-end">	
+        <p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome })
+        <a class="btn btn-primary" href="<%= request.getContextPath()%>/LogoutServlet">Logout</a></p> 
       </div>
     </div>
   </nav>

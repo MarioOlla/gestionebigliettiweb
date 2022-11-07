@@ -1,4 +1,4 @@
-package it.prova.gestionebigliettiweb.web.servlet;
+package it.prova.gestionebigliettiweb.web.servlet.biglietto;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,7 +11,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.gestionebigliettiweb.service.MyServiceFactory;
 
-@WebServlet("/ExecuteDeleteBigliettoServlet")
+@WebServlet("/admin/ExecuteDeleteBigliettoServlet")
 public class ExecuteDeleteBigliettoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

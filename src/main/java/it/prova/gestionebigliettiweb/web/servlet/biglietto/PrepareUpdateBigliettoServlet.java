@@ -1,4 +1,4 @@
-package it.prova.gestionebigliettiweb.web.servlet;
+package it.prova.gestionebigliettiweb.web.servlet.biglietto;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,31 +11,31 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.gestionebigliettiweb.service.MyServiceFactory;
 
-@WebServlet("/PrepareDeleteBigliettoServlet")
-public class PrepareDeleteBigliettoServlet extends HttpServlet {
+@WebServlet("/admin/PrepareUpdateBigliettoServlet")
+public class PrepareUpdateBigliettoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String idBigliettoParam = request.getParameter("idBiglietto");
 		
 		if (!NumberUtils.isParsable(idBigliettoParam)) {
-			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto,id non valido.");
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
-			return;
-		}
-
-		try {
-			request.setAttribute("bigliettoDaVisualizzare_attr",
-					MyServiceFactory.getBigliettoServiceInstance().findById(Long.parseLong(idBigliettoParam)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato, non sono riuscito a caricare il biglietto.");
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto durante la richiesta.");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("/biglietto/delete.jsp").forward(request, response);
+		try {
+			request.setAttribute("biglietto_attr",
+					MyServiceFactory.getBigliettoServiceInstance().findById(Long.parseLong(idBigliettoParam)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto durante la richiesta.");
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			return;
+		}
+		
+		request.getRequestDispatcher("/biglietto/update.jsp").forward(request, response);
 	}
 
 }

@@ -66,10 +66,10 @@
 			    	</div>
 			    
 			    	<div class='card-footer'>
-			    		<form action="ExecuteDeleteBigliettoServlet" method="post">
+			    		<form action="${pageContext.request.contextPath }/admin/ExecuteDeleteBigliettoServlet" method="post">
 			    			<input type="hidden" name="idBiglietto" value="${bigliettoDaVisualizzare_attr.id}">
 			    			<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-			    			<a href="ListBigliettiServlet" class='btn btn-outline-secondary' style='width:80px'>
+			    			<a href="${pageContext.request.contextPath }/ListBigliettiServlet" class='btn btn-outline-secondary' style='width:80px'>
 					    		<i class='fa fa-chevron-left'></i> Back
 							</a>
 			    		</form>			    						    

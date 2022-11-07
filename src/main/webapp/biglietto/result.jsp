@@ -41,7 +41,7 @@
 				        <h5>Lista dei risultati</h5> 
 				    </div>
 				    <div class='card-body'>
-				    	<a class="btn btn-primary " href="PrepareInsertBigliettoServlet">Add New</a>
+				    	<a class="btn btn-primary " href="admin/PrepareInsertBigliettoServlet">Add New</a>
 				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
@@ -67,8 +67,8 @@
 				                        	<td>${bigliettoItem.prezzo }</td>
 				                        	<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteShowBigliettoServlet?idBiglietto=${bigliettoItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateBigliettoServlet?idBiglietto=${bigliettoItem.id }">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteBigliettoServlet?idBiglietto=${bigliettoItem.id }">Delete</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="admin/PrepareUpdateBigliettoServlet?idBiglietto=${bigliettoItem.id }">Edit</a>
+												<a class="btn btn-outline-danger btn-sm" href="admin/PrepareDeleteBigliettoServlet?idBiglietto=${bigliettoItem.id }">Delete</a>
 											</td>
 				                    	</tr>
 				                    </c:forEach>

@@ -1,4 +1,4 @@
-package it.prova.gestionebigliettiweb.web.servlet;
+package it.prova.gestionebigliettiweb.web.servlet.biglietto;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
