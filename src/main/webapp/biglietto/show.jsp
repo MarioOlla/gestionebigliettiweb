@@ -1,7 +1,6 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="it.prova.gestionebigliettiweb.model.Biglietto"%>
-<%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -42,27 +41,25 @@
 				        <h5>Ecco il dettaglio del biglietto selezionato</h5> 
 				    </div>
 				    <div class='card-body'>
-				    
-				        <% Biglietto bigliettoInPagina = (Biglietto)request.getAttribute("bigliettoDaVisualizzare_attr"); %>
 				   		
 				   		<dl class="row">
 							<dt class="col-sm-3 text-right">Provenienza</dt>
-							<dd class="col-sm-9"><%=bigliettoInPagina.getProvenienza() %></dd>
+							<dd class="col-sm-9">${bigliettoDaVisualizzare_attr.provenienza }</dd>
 					    </dl>
 					    
 					    <dl class="row">
 							<dt class="col-sm-3 text-right">Destinazione</dt>
-							<dd class="col-sm-9"><%=bigliettoInPagina.getDestinazione() %></dd>
+							<dd class="col-sm-9">${bigliettoDaVisualizzare_attr.destinazione }</dd>
 					    </dl>
 					    
 					    <dl class="row">
 							<dt class="col-sm-3 text-right">Prezzo</dt>
-							<dd class="col-sm-9"><%=bigliettoInPagina.getPrezzo() %></dd>
+							<dd class="col-sm-9">${bigliettoDaVisualizzare_attr.prezzo}</dd>
 					    </dl>
 					    
 					    <dl class="row">
 							<dt class="col-sm-3 text-right">Data Partenza</dt>
-							<dd class="col-sm-9"><%=bigliettoInPagina.getData() %></dd>
+							<dd class="col-sm-9"><fmt:formatDate value="${bigliettoDaVisualizzare_attr.data }" pattern="dd-MM-yyyy"/></dd>
 					    </dl>
 					 			   
 			    	</div>

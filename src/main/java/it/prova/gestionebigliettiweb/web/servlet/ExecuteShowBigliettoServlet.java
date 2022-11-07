@@ -20,7 +20,7 @@ public class ExecuteShowBigliettoServlet extends HttpServlet {
 		String idBigliettoParam = request.getParameter("idBiglietto");
 
 		if (!NumberUtils.isParsable(idBigliettoParam)) {
-			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto durante la richiesta.");
+			request.setAttribute("errorMessage", "Attenzione, quelcosa è andato storto durante la richiesta. L'id sembra essere incorretto.");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}

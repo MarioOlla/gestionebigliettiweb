@@ -30,7 +30,8 @@ public class Biglietto {
 	@Column(name = "prezzo")
 	private Integer prezzo;
 
-	@CreationTimestamp
+	@CreationTimestamp ()
+	@Column(updatable = false)
 	private LocalDateTime createDateTime;
 	@UpdateTimestamp
 	private LocalDateTime updateDateTime;
